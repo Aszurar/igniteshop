@@ -1,10 +1,10 @@
 import { priceFormatter } from '@/utils/formatter'
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 
 type ProductProps = {
   name: string
-  value: number
-  image: StaticImageData
+  value: string | null
+  image: string
   className?: string
 }
 
@@ -14,8 +14,6 @@ export function Product({
   value,
   className,
 }: Readonly<ProductProps>) {
-  const priceFormatted = priceFormatter.format(value)
-
   return (
     <a
       href="#"
@@ -30,14 +28,14 @@ export function Product({
         className="object-cover"
       />
       <footer
-        className={`translate-y-110% absolute bottom-1 left-1 right-1 flex 
+        className={`absolute bottom-1 left-1 right-1 flex translate-y-110% 
           justify-between rounded-md bg-base-over p-8 opacity-0 transition-all 
           duration-200 ease-in-out group-hover:translate-y-[0%] 
           group-hover:opacity-100`}
       >
         <span className="text-xl font-bold text-base-title">{name}</span>
         <strong className="text-2xl font-bold text-principal-light">
-          {priceFormatted}
+          {value}
         </strong>
       </footer>
     </a>
